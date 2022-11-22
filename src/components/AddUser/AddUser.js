@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Formik, useFormikContext } from "formik";
 import * as Yup from "yup";
-import AlertDialog from "./Alert";
-import history from "./history";
+import AlertDialog from "../Alert";
+import history from "../history";
 import { useDispatch, useSelector } from "react-redux";
-import { adduser } from "../store/Adduser/action";
+import { adduser } from "../../store/Adduser/action";
 export const init = { name: "", email: "" };
 const ParentCopy = () => {
   const teststate = useSelector((state) => state.AddUserReducer);
   const dispatch = useDispatch();
   const [showDialog, setShowDialog] = useState(false);
   const [initial, setInitial] = useState(init);
-  const [store, setStore] = useState([]);
   const unblock = useRef(() => {});
   const changed = useRef(false);
   const nextpage = useRef();
@@ -92,8 +91,6 @@ const ParentCopy = () => {
             setTimeout(resolve, 500);
             dispatch(adduser(values));
           });
-          alert(JSON.stringify(values, null, 2));
-          // values = init;
           console.log("values", values);
           resetForm({ values: "" });
 
@@ -175,11 +172,6 @@ const ParentCopy = () => {
           );
         }}
       </Formik>
-      <input
-        onChange={(e) => {
-          dispatch(adduser(e.target.value));
-        }}
-      />
     </div>
   );
 };

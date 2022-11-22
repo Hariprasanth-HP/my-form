@@ -2,10 +2,9 @@ import React from "react";
 import { unstable_HistoryRouter as Router } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
 import Parent from "./Parent";
-import Child from "./Child";
-import AddUser from "./AddUser";
+import EditUser from "./Edit user/EditPage";
+import AddUser from "./AddUser/AddUser";
 import history from "./history";
-import { Counter } from "../features/counter/Counter";
 const Navbar = () => {
   return (
     <Router history={history}>
@@ -50,9 +49,9 @@ const Navbar = () => {
               style={{
                 color: "white",
               }}
-              to="/child"
+              to="/edituser"
             >
-              Child
+              Edit User
             </Link>
           </li>
           <li
@@ -69,28 +68,13 @@ const Navbar = () => {
               Add user
             </Link>
           </li>{" "}
-          <li
-            style={{
-              marginRight: "60px",
-            }}
-          >
-            <Link
-              style={{
-                color: "white",
-              }}
-              to="/counter"
-            >
-              Counter
-            </Link>
-          </li>
         </ul>
       </div>
 
       <Routes>
         <Route path="/" element={<Parent />}></Route>
-        <Route path="/child" element={<Child />}></Route>
+        <Route path="/edituser" element={<EditUser />}></Route>
         <Route path="/adduser" element={<AddUser />}></Route>
-        <Route path="/counter" element={<Counter />}></Route>
       </Routes>
     </Router>
   );

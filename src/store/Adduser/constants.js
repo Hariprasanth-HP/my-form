@@ -1,1 +1,2 @@
 export const ADD_USER_DETAIL = "ADD_USER_DETAIL";
+export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";
