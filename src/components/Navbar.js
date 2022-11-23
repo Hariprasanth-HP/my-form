@@ -3,6 +3,7 @@ import { unstable_HistoryRouter as Router } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
 import Parent from "./Parent";
 import EditUser from "./Edit user/EditPage";
+import Form from "./form/form";
 import AddUser from "./AddUser/AddUser";
 import history from "./history";
 const Navbar = () => {
@@ -67,7 +68,21 @@ const Navbar = () => {
             >
               Add user
             </Link>
-          </li>{" "}
+          </li>
+          <li
+            style={{
+              marginRight: "60px",
+            }}
+          >
+            <Link
+              style={{
+                color: "white",
+              }}
+              to="/form"
+            >
+              Form
+            </Link>
+          </li>
         </ul>
       </div>
 
@@ -75,6 +90,7 @@ const Navbar = () => {
         <Route path="/" element={<Parent />}></Route>
         <Route path="/edituser" element={<EditUser />}></Route>
         <Route path="/adduser" element={<AddUser />}></Route>
+        <Route path="/form" element={<Form />}></Route>
       </Routes>
     </Router>
   );

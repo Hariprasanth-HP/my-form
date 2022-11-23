@@ -4,20 +4,18 @@ import * as Yup from "yup";
 import AlertDialog from "../Alert";
 import history from "../history";
 import { useDispatch, useSelector } from "react-redux";
-import { adduser } from "../../store/Adduser/action";
-const EditUser = () => {
-  const init = { name: "", email: "" };
+import { adduser, updateuser } from "../../store/Adduser/action";
+const EditUser = ({ user, index }) => {
+  console.log("Edit user details", index);
+  const init = { name: user.name, email: user.email };
 
-  const teststate = useSelector((state) => state.AddUserReducer);
   const dispatch = useDispatch();
   const [showDialog, setShowDialog] = useState(false);
   const [initial, setInitial] = useState(init);
   const unblock = useRef(() => {});
   const changed = useRef(false);
   const nextpage = useRef();
-  useEffect(() => {
-    console.log("teststate", teststate);
-  }, [teststate]);
+  useEffect(() => {}, []);
 
   const FormObserver = () => {
     const { values } = useFormikContext();
@@ -90,7 +88,7 @@ const EditUser = () => {
         onSubmit={async (values, { resetForm }) => {
           await new Promise((resolve) => {
             setTimeout(resolve, 500);
-            dispatch(adduser(values));
+            dispatch(updateuser(values, index));
           });
           console.log("values", values);
           resetForm({ values: "" });

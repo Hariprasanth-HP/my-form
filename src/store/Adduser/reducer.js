@@ -1,6 +1,13 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { ADD_USER_DETAIL, UPDATE_USER_DETAIL } from "./constants";
-const values = [];
+import {
+  ADD_USER_DETAIL,
+  UPDATE_USER_DETAIL,
+  EDIT_USER_DETAIL,
+} from "./constants";
+const values = {
+  users: [],
+  edituser: false,
+};
 // Use the initialState as a default value
 function AddUserReducer(state = values, action) {
   // The reducer normally looks at the action type field to decide what happens
@@ -8,10 +15,28 @@ function AddUserReducer(state = values, action) {
     // Do something here based on the different types of actions
     case ADD_USER_DETAIL:
       const adduser = action.payload;
-      return [...state, adduser];
+      return { ...state, users: [...state.users, adduser] };
+    case EDIT_USER_DETAIL:
+      const edituser = action.payload;
+      return {
+        ...state,
+        users: state.users.map((user, index) =>
+          user.name === edituser
+            ? {
+                ...user,
+                edituser: true,
+              }
+            : user
+        ),
+        edituser: !state.edituser,
+      };
     case UPDATE_USER_DETAIL:
-      const updateuser = action.payload;
-      return [updateuser];
+      console.log("action.payload", action.payloaduser, action.payloadindex);
+      const updateuser = action.payloaduser;
+      const updateindex = action.payloadindex;
+      return {
+        ...state,
+      };
 
     default:
       // If this reducer doesn't recognize the action type, or doesn't
