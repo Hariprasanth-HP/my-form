@@ -13,11 +13,6 @@ export default function Form() {
   const [status, setStatus] = React.useState("none");
   return (
     <div className="App">
-      {/* <AppBar>
-        <toolbar>
-          <h1>SIGNIN FORM </h1>
-        </toolbar>
-      </AppBar> */}
       <Box>
         <Button
           onClick={() => setStatus("Approved")}
@@ -43,7 +38,16 @@ export default function Form() {
       </Box>
 
       <form className="group4">
-        <Typography className="heading" variant="h5">
+        <Typography
+          className={`${
+            status === "Denied"
+              ? "heading"
+              : status === "Pending"
+              ? "heading1"
+              : "heading2"
+          }`}
+          variant="h5"
+        >
           BASIC WITH MATERIAL UI
         </Typography>
         <Typography className="approve_deny">{status}</Typography>

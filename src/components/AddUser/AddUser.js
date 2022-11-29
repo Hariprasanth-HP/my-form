@@ -5,10 +5,13 @@ import AlertDialog from "../Alert";
 import history from "../history";
 import { useDispatch, useSelector } from "react-redux";
 import { adduser } from "../../store/Adduser/action";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router";
 export const init = { name: "", email: "" };
 const ParentCopy = () => {
   const teststate = useSelector((state) => state.AddUserReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
   const [initial, setInitial] = useState(init);
   const unblock = useRef(() => {});
@@ -66,6 +69,14 @@ const ParentCopy = () => {
 
   return (
     <div data-testid="ParentCopy">
+      <Button
+        onClick={() => navigate("/edituser")}
+        style={{ margin: "10px" }}
+        variant="contained"
+        size="small"
+      >
+        Back
+      </Button>
       <h1>
         Basic{" "}
         <a

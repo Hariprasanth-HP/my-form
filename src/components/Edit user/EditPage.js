@@ -14,14 +14,21 @@ const Editpage = () => {
   const handleInput = (e) => {
     setFilInput(e.target.value.toLowerCase());
   };
+  console.log("filInput", filInput);
+
   const handleFilter = () => {
-    const filtered = testuser.users.filter((user) => {
-      return user.name.toLowerCase().includes(filInput);
-      // console.log("user", user.user.name.toLowerCase().);
-    });
-    console.log("filtered", filtered);
-    setUser(filtered);
+    console.log("handleFilter user", user);
+    if (user.users.length > 0) {
+      const filtered = user.users.filter((user) => {
+        return user.name.toLowerCase().includes(filInput);
+        console.log("handleFilter filtered if", user);
+      });
+
+      console.log("filtered", filtered);
+      setUser(filtered);
+    }
   };
+  console.log("user filteres----->>>", user);
   const handleDelete = (name) => {
     const deleteitem = user.filter((del) => {
       console.log("del", del);
@@ -32,7 +39,7 @@ const Editpage = () => {
   };
   return (
     <div>
-      {testuser.edituser ? (
+      {user.edituser ? (
         ""
       ) : (
         <>
@@ -41,7 +48,7 @@ const Editpage = () => {
         </>
       )}
 
-      {testuser.users.map((use, index) => {
+      {user.users.map((use, index) => {
         console.log("use.edituser", use);
         return (
           <>

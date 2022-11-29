@@ -31,11 +31,21 @@ function AddUserReducer(state = values, action) {
         edituser: !state.edituser,
       };
     case UPDATE_USER_DETAIL:
-      console.log("action.payload", action.payloaduser, action.payloadindex);
+      console.log("action.payload", action.payloaduser);
       const updateuser = action.payloaduser;
       const updateindex = action.payloadindex;
       return {
         ...state,
+        users: state.users.map((user, index) =>
+          index === updateindex
+            ? {
+                edituser: !user.edituser,
+                name: updateuser.name,
+                email: updateuser.email,
+              }
+            : user
+        ),
+        edituser: !state.edituser,
       };
 
     default:
