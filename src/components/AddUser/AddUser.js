@@ -24,8 +24,6 @@ const ParentCopy = () => {
   const FormObserver = () => {
     const { values } = useFormikContext();
     useEffect(() => {
-      console.log("changed.current", changed.current);
-
       if (
         Object.entries(initial).sort().toString() !==
         Object.entries(values).sort().toString()
